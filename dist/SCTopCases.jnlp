@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="SCTopCases.jnlp">
+  <information>
+    <title>SCTopCases</title>
+    <vendor>BASTING</vendor>
+    <description>Sample JavaFX 2.0 application.</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <jfx:javafx-runtime version="2.2+" href="http://javadl.sun.com/webapps/download/GetFile/javafx-latest/windows-i586/javafx2.jnlp"/>
+  </resources>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="SCTopCases.jar" size="66391" download="eager" />
+    <jar href="lib/commons-logging-1.1.jar" size="52915" download="eager" />
+    <jar href="lib/dom4j-1.6.1.jar" size="313898" download="eager" />
+    <jar href="lib/jfxtras-labs-2.2-r4.jar" size="1368420" download="eager" />
+    <jar href="lib/junit-3.8.1.jar" size="121070" download="eager" />
+    <jar href="lib/log4j-1.2.13.jar" size="358180" download="eager" />
+    <jar href="lib/ojdbc14.jar" size="1546176" download="eager" />
+    <jar href="lib/orai18n.jar" size="1645918" download="eager" />
+    <jar href="lib/poi-3.8-20120326.jar" size="1820323" download="eager" />
+    <jar href="lib/poi-ooxml-3.8-20120326.jar" size="933010" download="eager" />
+    <jar href="lib/poi-ooxml-schemas-3.8-20120326.jar" size="4706775" download="eager" />
+    <jar href="lib/xmlbeans-2.3.0.jar" size="2666695" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="SCTopCases" >
+    <param name="requiredFXVersion" value="2.2+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="com.bgh.crm.top.cases.app.ViewTopCasesMain"  name="SCTopCases" />
+  <update check="always"/>
+</jnlp>

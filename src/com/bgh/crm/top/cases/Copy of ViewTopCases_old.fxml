@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="com.bgh.crm.top.cases.ViewTopCasesController">
+  <children>
+    <SplitPane dividerPositions="0.04180602006688963, 0.5903010033444817" focusTraversable="true" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <items>
+        <MenuBar prefWidth="655.0">
+          <menus>
+            <Menu text="Applicatio_n">
+              <items>
+                <MenuItem onAction="#exitApp" text="E_xit" />
+              </items>
+            </Menu>
+            <Menu text="_Search">
+              <items>
+                <Menu text="_Options">
+                  <items>
+                    <RadioMenuItem mnemonicParsing="false" selected="true" text="Top 10">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="topCasesGroup" />
+                      </toggleGroup>
+                    </RadioMenuItem>
+                    <RadioMenuItem mnemonicParsing="false" text="Top 15" toggleGroup="$topCasesGroup" />
+                    <RadioMenuItem mnemonicParsing="false" text="Top 20" toggleGroup="$topCasesGroup" />
+                    <RadioMenuItem mnemonicParsing="false" text="Top 25" toggleGroup="$topCasesGroup" />
+                  </items>
+                </Menu>
+              </items>
+            </Menu>
+            <Menu text="_Help">
+              <items>
+                <MenuItem text="_About" />
+              </items>
+            </Menu>
+          </menus>
+        </MenuBar>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <children>
+            <Button fx:id="btnRefresh" mnemonicParsing="false" prefHeight="22.000099999997474" prefWidth="80.0" text="Refresh" />
+            <BarChart fx:id="barChartTopCases" prefHeight="299.0" prefWidth="798.0" title="" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
+              <xAxis>
+                <CategoryAxis id="yAxis1" fx:id="yAxis" side="BOTTOM">
+                  <categories>
+                    <FXCollections fx:factory="observableArrayList" />
+                  </categories>
+                </CategoryAxis>
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="xAxis" side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <HBox id="HBox" alignment="CENTER" spacing="5.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="2.0">
+              <children>
+                <VBox id="VBox" alignment="CENTER" spacing="5.0">
+                  <children>
+                    <Label prefWidth="200.0" text="Progress" />
+                    <ProgressBar fx:id="pbLoading" prefWidth="200.0" progress="0.0" />
+                  </children>
+                </VBox>
+                <ProgressIndicator fx:id="piLoading" progress="0.0" />
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="248.0" prefWidth="798.0">
+          <children>
+            <SplitPane dividerPositions="0.34296482412060303" focusTraversable="true" prefHeight="250.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="248.0" prefWidth="398.0">
+                  <children>
+                    <TableView fx:id="tblTopCasesListing" prefHeight="248.0" prefWidth="355.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <columns>
+                        <TableColumn editable="false" prefWidth="100.0" text="Type Level 1" />
+                        <TableColumn editable="false" prefWidth="100.0" text="Type Level 2" />
+                        <TableColumn editable="false" prefWidth="100.0" text="Type Level 3" />
+                        <TableColumn editable="false" prefWidth="75.0" text="Count" />
+                      </columns>
+                    </TableView>
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                  <children>
+                    <TableView fx:id="tblCaseDetailsListing" prefHeight="248.0" prefWidth="435.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <columns>
+                        <TableColumn editable="false" prefWidth="75.0" text="MSISDN" />
+                        <TableColumn editable="false" prefWidth="75.0" sortable="false" text="History" />
+                        <TableColumn editable="false" prefWidth="75.0" text="Title" />
+                        <TableColumn editable="false" prefWidth="75.0" text="Case Id" />
+                        <TableColumn editable="false" prefWidth="75.0" text="Created" />
+                        <TableColumn editable="false" prefWidth="75.0" text="Status" />
+                        <TableColumn editable="false" prefWidth="75.0" text="Condition" />
+                      </columns>
+                    </TableView>
+                  </children>
+                </AnchorPane>
+              </items>
+            </SplitPane>
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+  </children>
+  <stylesheets>
+    <URL value="@viewtopcases.css" />
+  </stylesheets>
+</AnchorPane>

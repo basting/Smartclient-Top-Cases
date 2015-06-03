@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="com.bgh.crm.top.cases.ViewTopCasesController">
+  <children>
+    <SplitPane dividerPositions="0.03581661891117478, 0.6805157593123209" focusTraversable="true" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <items>
+        <MenuBar fx:id="mnuBar" prefWidth="655.0">
+          <menus>
+            <Menu text="Applicatio_n">
+              <items>
+                <MenuItem disable="true" mnemonicParsing="false" onAction="#exportToExcel" text="Export to Excel" fx:id="mnuItmExportToExcel" />
+                <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem onAction="#exitApp" text="E_xit" />
+              </items>
+            </Menu>
+            <Menu text="_Options">
+              <items>
+                <Menu text="_Search">
+                  <items>
+                    <Menu mnemonicParsing="false" text="Data Load">
+                      <items>
+                        <RadioMenuItem mnemonicParsing="false" selected="true" text="Case Summary + Details" fx:id="radioMenuLoadSummaryDetails">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="loadGroup" />
+                          </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem mnemonicParsing="false" text="Case Summary only" toggleGroup="$loadGroup" fx:id="radioMenuLoadSummary" />
+                      </items>
+                    </Menu>
+                    <SeparatorMenuItem mnemonicParsing="false" />
+                    <Menu mnemonicParsing="false" text="Top">
+                      <items>
+                        <RadioMenuItem mnemonicParsing="false" selected="true" text="Top 10" fx:id="radioMenuTop10">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="topCasesGroup" />
+                          </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem mnemonicParsing="false" text="Top 15" toggleGroup="$topCasesGroup" fx:id="radioMenuTop15" />
+                        <RadioMenuItem mnemonicParsing="false" text="Top 20" toggleGroup="$topCasesGroup" fx:id="radioMenuTop20" />
+                        <RadioMenuItem mnemonicParsing="false" text="Top 25" toggleGroup="$topCasesGroup" fx:id="radioMenuTop25" />
+                      </items>
+                    </Menu>
+                    <SeparatorMenuItem mnemonicParsing="false" />
+                    <Menu mnemonicParsing="false" text="Condition">
+                      <items>
+                        <RadioMenuItem mnemonicParsing="false" selected="true" text="Open cases only" fx:id="radioMenuCondOpen">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="conditionGroup" />
+                          </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem mnemonicParsing="false" text="Open + Closed cases" toggleGroup="$conditionGroup" fx:id="radioMenuCondOpenClosed" />
+                      </items>
+                    </Menu>
+                  </items>
+                </Menu>
+              </items>
+            </Menu>
+            <Menu text="_Help">
+              <items>
+                <MenuItem text="_About" />
+              </items>
+            </Menu>
+          </menus>
+        </MenuBar>
+        <AnchorPane id="graphPane" fx:id="pneBarChart" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <children>
+            <Button fx:id="btnRefresh" defaultButton="true" mnemonicParsing="false" onAction="#loadData" prefHeight="22.000099999997474" prefWidth="80.0" text="Load Graph" />
+            <HBox id="HBox" alignment="CENTER" spacing="5.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="2.0">
+              <children>
+                <VBox id="VBox" alignment="CENTER" spacing="5.0">
+                  <children>
+                    <Label fx:id="lblProgress" prefWidth="200.0" text="Progress" textOverrun="CLIP">
+                      <font>
+                        <Font name="Verdana" size="11.0" fx:id="x1" />
+                      </font>
+                      <textFill>
+                        <Color blue="1.000" green="0.000" red="0.078" fx:id="x2" />
+                      </textFill>
+                    </Label>
+                    <ProgressBar fx:id="pbLoading" prefWidth="200.0" progress="0.0" />
+                  </children>
+                </VBox>
+                <ProgressIndicator fx:id="piLoading" progress="0.0" />
+              </children>
+            </HBox>
+            <Label fx:id="lblLastLoaded" font="$x1" layoutX="106.0" layoutY="9.0" prefWidth="422.0" textFill="$x2" />
+            <Label id="lblLastLoaded" fx:id="lblErrorMessage" font="$x1" layoutX="13.0" layoutY="29.0" prefHeight="41.0" prefWidth="529.0" textFill="RED" wrapText="true" />
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="248.0" prefWidth="798.0">
+          <children>
+            <SplitPane dividerPositions="0.38819095477386933" focusTraversable="true" prefHeight="250.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane fx:id="pneTopCases" minHeight="0.0" minWidth="0.0" prefHeight="248.0" prefWidth="398.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                  <children>
+                    <TableView fx:id="tblCaseDetailsListing" prefHeight="248.0" prefWidth="435.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <columns>
+                        <TableColumn prefWidth="120.0" text="MSISDN" fx:id="colMsisdn" />
+                        <TableColumn prefWidth="75.0" sortable="false" text="History" fx:id="colHistory" />
+                        <TableColumn prefWidth="200.0" text="Title" fx:id="colTitle" />
+                        <TableColumn prefWidth="75.0" text="Case Id" fx:id="colCaseId" />
+                        <TableColumn prefWidth="120.0" text="Created" fx:id="colCreated" />
+                        <TableColumn prefWidth="90.0" text="Status" fx:id="colStatus" />
+                        <TableColumn prefWidth="90.0" text="Condition" fx:id="colCondition" />
+                      </columns>
+                      <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#copySelectedCasesDetailsToClipboard" text="Copy" />
+                          </items>
+                        </ContextMenu>
+                      </contextMenu>
+                    </TableView>
+                  </children>
+                </AnchorPane>
+              </items>
+            </SplitPane>
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+  </children>
+  <stylesheets>
+    <URL value="@viewtopcases.css" />
+  </stylesheets>
+</AnchorPane>
